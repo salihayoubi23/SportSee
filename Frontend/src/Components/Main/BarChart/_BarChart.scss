@@ -1,0 +1,54 @@
+.barChart {
+    background-color: $color_whiteLight;
+    padding: 25px;
+    width: 100%;
+    height: 300px;
+    font-family: $font_roboto;
+    font-weight: 500;
+    margin-bottom: 50px;
+
+    &__label {
+        background-color: $color_red;
+        padding: 5px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+
+        &__cat {
+            color: $color_white;
+            font-family: $font_roboto;
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &__title {
+            font-size: 18px;
+        }
+
+        &__legend {
+            color: $color_grey;
+            margin-left: 15px;
+        }
+
+        &__color {
+            margin-left: 35px;
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+
+            &--kcal {
+                background-color: $color_red;
+            }
+
+            &--kg {
+                background-color: $color_darkBlue;
+            }
+        }
+
+    }
+}

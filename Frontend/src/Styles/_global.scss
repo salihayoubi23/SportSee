@@ -1,0 +1,77 @@
+body,
+html {
+    height: 100%;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between;
+}
+
+.nextTo {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.home {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: $font_roboto;
+    &__logo {
+
+        background-color: $color_red;
+        border-radius: 100%;
+        width: 150px;
+        height: 150px;
+
+        &__img {
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    &__box {
+        &__title{
+            margin: 50px;
+            text-align: center;
+            font-size: 50px;
+        }
+        &__link {           
+            text-decoration: none;
+            font-size: 38px;
+            color: $color_red;
+            padding: 25px;
+            background-color: $color_black;
+            border-radius: 25px;
+            width: 150px;
+            text-align: center;
+            margin: 10px;
+            transition: 0.5s;
+            &:hover{
+                color: $color_whiteLight;
+                background-color:  $color_grey;
+            }
+
+        }
+
+    }
+
+}
+
+.testInfo {
+    text-align: center;
+    border: 5px solid $color_darkBlue;
+    border-radius: 25px;
+    margin: 25px;
+    padding: 10px;
+    width: 25%;
+    font-family: $font_roboto;
+    font-size: 14px;
+}

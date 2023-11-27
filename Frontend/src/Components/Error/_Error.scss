@@ -1,0 +1,32 @@
+.error
+{
+    flex-grow: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: $font_roboto;
+    &__title{
+        font-size: 50px;
+        color: $color_red;
+        margin: 0;
+    }
+    &__text{
+        font-size: 18px;
+        margin: 50px;
+    }
+    &__link{
+        border: 2px solid $color_black;
+        border-radius: 25px;
+        background-color: $color_whiteLight;
+        padding: 15px 25px;
+        transition: 0.5s;
+        cursor: pointer;
+        &:hover{
+            background-color: $color_black;
+            border: 2px solid $color_whiteLight;
+            color: $color_whiteLight;
+        }
+    }
+}

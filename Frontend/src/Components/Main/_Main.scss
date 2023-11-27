@@ -1,0 +1,107 @@
+.mainComponent {
+    font-family: $font_roboto;
+    font-weight: 500;
+    display: flex;
+    flex-grow: 1;
+
+    &__page {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 25px;
+
+        &__welcome {
+            width: 90%;
+            margin-top: 25px;
+
+            &__title {
+                font-size: 38px;
+                margin: 0;
+                margin-bottom: 10px;
+
+                &__red {
+                    color: $color_red2;
+                }
+            }
+
+            &__msg {
+                margin: 0;
+            }
+        }
+
+        &__charts {
+            width: 70%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+
+            @media (max-width:1024px) {
+                justify-content: center;
+            }
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 25%;
+
+        &__cat {
+            background-color: $color_whiteLight;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            width: 50%;
+            padding: 25px;
+
+            &__figure {
+                padding: 20px;
+                border-radius: 10px;
+
+                &--kCal {
+                    background-color: rgba(255, 0, 0, 0.07);
+                }
+
+                &--prot {
+                    background-color: rgba(75, 184, 255, 0.07);
+                }
+
+                &--lip {
+                    background-color: rgba(253, 81, 129, 0.07);
+                }
+
+                &--glu {
+                    background-color: rgba(249, 206, 35, 0.07);
+                }
+            }
+
+            &__box {
+                &__value {
+                    font-weight: 700;
+                    font-size: 20px;
+                    margin: 0;
+                    color: $color_darkBlue;
+                }
+
+                &__type {
+                    margin: 0;
+                    color: $color_grey;
+                }
+            }
+        }
+    }
+}
+
+.nextToMain {
+   
+    justify-content: space-between;
+    width: 90%;
+}
+.main__flex{
+display: flex;
+
+}

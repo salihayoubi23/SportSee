@@ -1,0 +1,37 @@
+.header {
+    background-color: $color_black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 35px;
+    font-size: 22px;
+    font-family: 'Roboto';
+    font-weight: 500;
+
+    &__logo {
+        display: flex;
+        align-items: center;
+
+        &__img {
+            background-color: $color_red;
+            border-radius: 100%;
+            width: 55px;
+            height: 55px;
+        }
+
+        &__name {
+            margin-left: 25px;
+            color: $color_red;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-around;
+        width: 85%;
+
+        &__text {
+            color: $color_white;
+        }
+    }
+}
