@@ -1,9 +1,9 @@
 export const USER_MAIN_DATA__MOCK = [
     {
-        id: 'anotherTest',
+        id: 'Test',
         userInfos: {
-            firstName: 'Sophie',
-            lastName: 'Martin',
+            firstName: 'Saliha',
+            lastName: 'Youbi',
             age: 30,
         },
         score: 0.8,
@@ -18,7 +18,7 @@ export const USER_MAIN_DATA__MOCK = [
 
 export const USER_ACTIVITY__MOCK = [
     {
-        userId: 'anotherTest',
+        userId: 'Test',
         sessions: [
             {
                 day: '2023-10-01',
@@ -62,7 +62,7 @@ export const USER_ACTIVITY__MOCK = [
 
 export const USER_AVERAGE_SESSIONS__MOCK = [
     {
-        userId: 'anotherTest',
+        userId: 'Test',
         sessions: [
             {
                 day: 1,
@@ -99,7 +99,7 @@ export const USER_AVERAGE_SESSIONS__MOCK = [
 
 export const USER_PERFORMANCE__MOCK = [
     {
-        userId: 'anotherTest',
+        userId: 'Test',
         kind: {
             1: 'cardio',
             2: 'energy',

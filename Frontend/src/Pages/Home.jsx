@@ -27,6 +27,10 @@ function Home() {
         {/* Liens vers les pages des utilisateurs avec des paramètres dans les URL */}
         <Link className='home__box__link' to={"user/18"}>User 18 Cecilia</Link>
         <Link className='home__box__link' to={"user/12"}>User 12 Karl</Link>
+        {/* Ajout du lien vers la page des données simulées */}
+        <Link className='home__box__link' to={"/mocked-data"}>
+          Utilisez les données simulées ?
+        </Link>
       </div>
     </div> // Fin du conteneur principal
   );

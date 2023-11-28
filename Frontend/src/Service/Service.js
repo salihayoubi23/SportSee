@@ -1,12 +1,11 @@
-// Importation des données fictives (mocks)
+// Import des données simulées depuis le module DataMock
 import { USER_ACTIVITY__MOCK, USER_AVERAGE_SESSIONS__MOCK, USER_PERFORMANCE__MOCK, USER_MAIN_DATA__MOCK } from "./DataMock";
 
-// Fonction pour récupérer les données de l'utilisateur depuis différentes sources
+// Fonction pour récupérer les données utilisateur
 export function fetchUserData(userId) {
-    // Tableau pour stocker les données récupérées
+    // Tableau pour stocker les données
     const users = [];
-
-    // Chemins d'accès pour récupérer les données depuis différentes sources
+    // Chemins vers les différentes données à récupérer
     const path = [
         `http://localhost:3000/user/${userId}`,
         `http://localhost:3000/user/${userId}/activity`,
@@ -14,41 +13,35 @@ export function fetchUserData(userId) {
         `http://localhost:3000/user/${userId}/performance`
     ];
 
-    // Création d'une liste de promesses pour les requêtes HTTP
+    // Création d'un tableau de promesses pour effectuer les requêtes en parallèle
     const promiseRequest = path.map(url => {
         return fetch(url)
             .then(response => {
-                // Vérification de la réponse HTTP
                 if (!response.ok) {
                     throw new Error(`Network response was not ok: ${response.statusText}`);
                 }
-                // Renvoi des données JSON
                 return response.json();
             })
             .catch(error => {
-                // Gestion des erreurs, log et renvoi de null
                 console.error(error);
                 return null;
             });
     });
 
-    // Exécute toutes les promesses en parallèle
+    // Utilisation de Promise.all pour attendre que toutes les requêtes soient terminées
     return Promise.all(promiseRequest)
         .then(data => {
-            // Booléen pour vérifier si au moins une requête a réussi
+            // Vérification des données reçues
             let hasData = false;
-            // Indice pour savoir si les données proviennent des mocks
             let index = '';
-            // Boucle pour traiter les données récupérées
             for (const resultat of data) {
                 if (resultat !== null) {
-                    // Si les données ne sont pas nulles, les ajouter au tableau
                     users.push(resultat);
                     hasData = true;
                 }
             }
 
-            // Si aucune donnée n'est récupérée, utiliser des données fictives (mock)
+            // Si aucune donnée n'est disponible, utiliser les données simulées
             if (!hasData) {
                 users.push(USER_MAIN_DATA__MOCK);
                 users.push(USER_ACTIVITY__MOCK);
@@ -57,28 +50,27 @@ export function fetchUserData(userId) {
                 index = 0;
             }
 
-            // Appeler la fonction pour trier les données avant de les renvoyer
+            // Appel de la fonction pour trier et formater les données
             return sortData(users, index);
         })
         .catch(error => {
-            // Gestion des erreurs, log et rejet de l'erreur
             console.error(error);
-            throw error;
+            throw error; // Rejeter l'erreur pour que le code appelant puisse également la gérer
         });
 }
 
-// Fonction pour trier les données avant de les renvoyer
+// Fonction pour trier et formater les données
 function sortData(users, index) {
     // Jours de la semaine
     const day = ["L", "M", "M", "J", "V", "S", "D"];
-    // Tableaux pour stocker les données triées
+    // Tableaux pour stocker les données utilisateur et le type de performance
     let user = [];
     let kind = [];
     let dataMock = false;
 
-    // Si les données proviennent de mocks
+    // Vérification de l'index pour déterminer le format des données
     if (index === 0) {
-        // Extraire les différentes parties des données et les structurer dans un format commun
+        // Format des données lorsque les données réelles ne sont pas disponibles
         user = [
             {
                 userId: users[0][index].id,
@@ -101,27 +93,23 @@ function sortData(users, index) {
             }
         ];
 
-        // Remplir les jours de la semaine dans les données
+        // Assignation des jours de la semaine à la durée moyenne des sessions
         let i = 0;
         day.forEach(el => {
             user[0].timesSessions[i].day = el;
             i++;
         });
 
-        // Récupérer les types d'activité
+        // Assignation des types de performance
         kind = users[3][index].kind;
-
-        // Attribuer le type d'activité correspondant à chaque performance
         let x = 1;
         user[0].performance.forEach(el => {
             el.kind = kind[x];
             x++;
         });
-
-        // Indiquer que les données proviennent des mocks
         dataMock = true;
     } else {
-        // Si les données proviennent d'une source réelle
+        // Format des données lorsque les données réelles sont disponibles
         user = [
             {
                 userId: users[0].data.id,
@@ -144,27 +132,23 @@ function sortData(users, index) {
             }
         ];
 
-        // Remplir les jours de la semaine dans les données
+        // Assignation des jours de la semaine à la durée moyenne des sessions
         let i = 0;
         day.forEach(el => {
             user[0].timesSessions[i].day = el;
             i++;
         });
 
-        // Récupérer les types d'activité
+        // Assignation des types de performance
         kind = users[3].data.kind;
-
-        // Attribuer le type d'activité correspondant à chaque performance
         let x = 1;
         user[0].performance.forEach(el => {
             el.kind = kind[x];
             x++;
         });
-
-        // Indiquer que les données proviennent d'une source réelle
         dataMock = false;
     }
 
-    // Renvoyer les données triées
+    // Retour des données formatées
     return { user, kind, dataMock };
 }
