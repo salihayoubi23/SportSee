@@ -1,12 +1,14 @@
+import React, { useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import Header from '../Components/Header/Header';
 import Main from '../Components/Main/Main';
-import { useParams } from 'react-router-dom';
 import { fetchUserData } from '../Service/Service';
-import { useEffect, useState } from 'react';
 
 function User() {
   const userId = useParams();
   const [userData, setUserData] = useState(null);
+  const [redirect, setRedirect] = useState(false);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -14,25 +16,30 @@ function User() {
         setUserData(data);
       } catch (error) {
         console.error(error);
+        setRedirect(true);
       }
     }
-    fetchData();
+
+    if (userId.id !== '12' && userId.id !== '18') {
+      setRedirect(true);
+    } else {
+      fetchData();
+    }
   }, [userId.id]);
 
-  let navId = ''
-  if (userId.id === '18') {
-    navId = 12
-  } else {
-    navId = 18
-  }
-   
+  let navId = userId.id === '18' ? 12 : 18;
+
   return (
     <>
+      {redirect && <Navigate to="/page-d-erreur" />}
       <Header props={navId} />
-      <Main userData={userData} />      
+      {userData ? (
+        <Main userData={userData} />
+      ) : (
+        <div>Loading...</div>
+      )}
     </>
   );
 }
-
 
 export default User;

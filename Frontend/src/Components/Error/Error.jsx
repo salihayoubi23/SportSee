@@ -6,7 +6,7 @@ function ErrorComponent({ buttonMock }) {
 
   const handleButtonClick = () => {
     // Redirigez l'utilisateur vers la page d'accueil ou une autre page de votre choix
-    navigate('/');
+    navigate('/mocked-data');
   };
 
   return (
